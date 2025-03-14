@@ -3,38 +3,44 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lista de Tareas</title>
+    <title>Ingreso de Pedido</title>
     <link rel="stylesheet" href="styles.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
 </head>
 <body>
-    <div class="container">
-        <h1>Lista de Tareas</h1>
-        <input type="text" id="tareaInput" placeholder="Escribe una tarea...">
-        <button onclick="agregarTarea()">Agregar</button>
-        <ul id="listaTareas"></ul>
-    </div>
+    <h1>Ingreso de Pedido</h1>
+    
+    <label for="codigo">Código del Producto:</label>
+    <input type="text" id="codigo" placeholder="Ej: ABC123">
+    
+    <label for="cantidad">Cantidad:</label>
+    <input type="number" id="cantidad" placeholder="Ej: 10">
+    
+    <button onclick="guardarPedido()">Guardar</button>
 
     <script>
-        // Función para agregar una tarea
-        function agregarTarea() {
-            // Obtener el valor de la tarea
-            var tareaInput = document.getElementById('tareaInput').value;
+        function guardarPedido() {
+            var codigo = document.getElementById('codigo').value;
+            var cantidad = document.getElementById('cantidad').value;
 
-            // Verificar si el campo no está vacío
-            if (tareaInput.trim() !== "") {
-                // Crear un nuevo elemento de lista (li)
-                var nuevaTarea = document.createElement('li');
-                nuevaTarea.textContent = tareaInput;
-
-                // Agregar la nueva tarea a la lista
-                document.getElementById('listaTareas').appendChild(nuevaTarea);
-
-                // Limpiar el campo de entrada después de agregar la tarea
-                document.getElementById('tareaInput').value = "";
-            } else {
-                // Mostrar una alerta si no hay tarea ingresada
-                alert("Por favor, ingresa una tarea.");
+            if (codigo.trim() === "" || cantidad.trim() === "") {
+                alert("Por favor, ingresa ambos valores.");
+                return;
             }
+
+            // Crear datos para el archivo Excel
+            var datos = [
+                ["Código del Producto", "Cantidad"],
+                [codigo, cantidad]
+            ];
+
+            // Crear hoja de cálculo
+            var wb = XLSX.utils.book_new();
+            var ws = XLSX.utils.aoa_to_sheet(datos);
+            XLSX.utils.book_append_sheet(wb, ws, "Pedido");
+
+            // Descargar archivo
+            XLSX.writeFile(wb, "pedido.xlsx");
         }
     </script>
 </body>
