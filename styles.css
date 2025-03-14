@@ -1,19 +1,66 @@
+/* Estilos generales para la página */
 body {
     font-family: Arial, sans-serif;
-    text-align: center;
-    margin: 50px;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
 }
 
 .container {
-    max-width: 400px;
-    margin: auto;
+    width: 80%;
+    max-width: 800px;
+    margin: 0 auto;
     padding: 20px;
-    border: 1px solid #ccc;
+    background-color: #fff;
     border-radius: 10px;
-    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-input, button {
-    margin: 5px;
+h1 {
+    text-align: center;
+    color: #333;
+}
+
+/* Estilos para el input y botón */
+input[type="text"] {
+    width: 70%;
     padding: 10px;
+    margin-right: 10px;
+    border: 2px solid #333;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+button {
+    padding: 10px 20px;
+    background-color: #ffcc00;
+    border: 2px solid #333;
+    color: #333;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+button:hover {
+    background-color: #e6b800;
+}
+
+/* Estilos para la lista de tareas */
+ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+li {
+    background-color: #ffcc00;
+    color: black;
+    padding: 10px;
+    margin: 10px 0;
+    border-radius: 5px;
+    font-size: 18px;
+}
+
+li:nth-child(odd) {
+    background-color: #333;
+    color: #fff;
 }
